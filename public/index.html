@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ChirpKey Console</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/vendor/ggwave.js"></script>
+  <script src="/vendor/bolna-web-call.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><span class="mark">◉</span>ChirpKey</div>
+    <div class="pills">
+      <span class="pill" id="pill-call">Call: idle</span>
+      <span class="pill" id="pill-verified">Not verified</span>
+      <span class="pill" id="pill-mic">Laptop ear: off</span>
+      <span class="pill" id="pill-server">Connecting…</span>
+    </div>
+  </header>
+
+  <div id="setup-banner" class="banner hidden" style="margin-bottom:16px"></div>
+
+  <div class="grid">
+    <div class="stack">
+      <section class="card stack">
+        <h2>Voice agent</h2>
+        <button class="primary big" id="btn-call">Start web call</button>
+        <div>
+          <div class="small muted" style="margin-bottom:6px">Agent voice</div>
+          <div class="meter"><i id="agent-level"></i></div>
+        </div>
+        <div>
+          <div class="small muted" style="margin-bottom:6px">Laptop microphone (listening for approval chirps)</div>
+          <div class="meter"><i id="mic-level"></i></div>
+        </div>
+        <div class="row">
+          <input id="my-phone" placeholder="+91 your mobile" inputmode="tel">
+          <button id="btn-call-me" style="flex:0;white-space:nowrap">Call my phone</button>
+        </div>
+        <p class="small muted" style="margin:0" id="number-hint">Or dial the Bolna number: <b>+1 850 753 9658</b></p>
+        <label class="field">Bolna agent
+          <select id="agent-mode">
+            <option value="graph">Live: graph agent + real-time events</option>
+            <option value="classic">Classic: single prompt + status tool</option>
+          </select>
+        </label>
+        <label class="field">Chirp mode
+          <select id="mode"></select>
+        </label>
+        <div>
+          <div class="small muted" style="margin-bottom:6px">Bolna live events pushed into the call</div>
+          <ul class="feed small" id="events"><li class="empty">None yet.</li></ul>
+        </div>
+        <p class="small muted" style="margin:0">Say your name and secret phrase, ask for anything, and approve the chirp on your phone.</p>
+      </section>
+
+      <section class="card stack">
+        <h2>Phone approver</h2>
+        <div class="row" style="align-items:flex-start">
+          <div class="qr" id="qr"></div>
+          <div class="stack">
+            <div class="url" id="phone-url"></div>
+            <p class="small muted" style="margin:0">Open on your phone over HTTPS (the ngrok URL), tap <b>Listen</b>, and keep it near the laptop.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="stack">
+      <section class="card">
+        <h2>Requests</h2>
+        <ul class="feed" id="feed"><li class="empty">No requests yet.</li></ul>
+      </section>
+
+      <section class="card stack">
+        <div class="row" style="justify-content:space-between">
+          <h2 style="margin:0">Call reports (Bolna summaries + extractions)</h2>
+          <button id="btn-calls" class="small" style="flex:0">Refresh</button>
+        </div>
+        <ul class="feed" id="calls"><li class="empty">Loading…</li></ul>
+      </section>
+
+      <section class="card stack" id="test-card">
+        <h2>Test without a call</h2>
+        <div class="row">
+          <label class="field">Target <select id="t-target"></select></label>
+        </div>
+        <label class="field">Action <input id="t-action" value="Cancel my Codex subscription"></label>
+        <label class="field">Details <textarea id="t-details">Cancel at the end of the current billing period. Do not delete data.</textarea></label>
+        <button id="t-send">Send request chirp</button>
+      </section>
+    </div>
+  </div>
+</div>
+<script type="module" src="/console.js"></script>
+</body>
+</html>

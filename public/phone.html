@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#2f5bea">
+  <title>ChirpKey Approver</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/vendor/ggwave.js"></script>
+</head>
+<body>
+<div class="phone stack">
+  <header class="top" style="margin:0">
+    <div class="brand"><span class="mark">◉</span>ChirpKey</div>
+    <span class="pill" id="pill">Idle</span>
+  </header>
+
+  <section id="v-start" class="stack">
+    <div class="hero">
+      <div class="orb" id="orb"><span></span></div>
+      <h1>Your phone is the key</h1>
+      <p class="muted">Keep this page open near the laptop. When the agent sends a request, it arrives as a chirp and shows up here to approve.</p>
+    </div>
+    <button class="primary big" id="btn-listen">Listen</button>
+    <p class="small muted" id="hint" style="text-align:center"></p>
+  </section>
+
+  <section id="v-request" class="stack hidden">
+    <div class="card req stack">
+      <div class="target" id="r-target"></div>
+      <div class="what" id="r-action"></div>
+      <div class="details" id="r-details"></div>
+      <div class="small muted mono" id="r-id"></div>
+    </div>
+    <div class="actions">
+      <button class="danger big" id="btn-deny">Deny</button>
+      <button class="primary big" id="btn-approve">Approve</button>
+    </div>
+    <p class="small muted" id="r-status" style="text-align:center"></p>
+    <button class="big hidden" id="btn-network">Laptop didn't hear it? Approve over network</button>
+  </section>
+
+  <section id="v-result" class="card result hidden">
+    <div class="icon" id="res-icon"></div>
+    <h2 id="res-title" style="text-transform:none;letter-spacing:0;font-size:18px;color:var(--text)"></h2>
+    <p class="muted" id="res-text"></p>
+    <button id="btn-back">Back to listening</button>
+  </section>
+
+  <details>
+    <summary>Settings</summary>
+    <label class="field" style="margin-top:10px">Chirp mode for approvals <select id="mode"></select></label>
+    <p class="small muted">Ultrasonic is near-silent but some phone speakers can't play it well. Switch to dual-tone if the laptop doesn't hear the approval.</p>
+  </details>
+</div>
+<script type="module" src="/phone.js"></script>
+</body>
+</html>
